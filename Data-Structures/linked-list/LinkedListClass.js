@@ -130,7 +130,7 @@ class LinkedList {
 
     let currentNode = this.head;
     while (currentNode) {
-      nodes.push(currentNode.value);
+      nodes.push(currentNode);
       currentNode = currentNode.next;
     }
     return nodes;
