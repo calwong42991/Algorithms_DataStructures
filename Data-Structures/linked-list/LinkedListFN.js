@@ -83,7 +83,7 @@ const LinkedList = (comparatorFunction) => {
     if(head === tail){
       head = null;
       tail = null;
-      return delete;
+      return deletedTail;
     }
 
     let currentNode = head;
