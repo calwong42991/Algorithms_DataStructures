@@ -43,7 +43,7 @@ class LinkedList {
 
     let deletedNode = null;
 
-    while (this.head && this.compare.equal(this.head.value, value)) {
+    if (this.head && this.compare.equal(this.head.value, value)) {
       deletedNode = this.head;
       this.head = this.head.next;
     }
@@ -130,7 +130,7 @@ class LinkedList {
 
     let currentNode = this.head;
     while (currentNode) {
-      nodes.push(currentNode);
+      nodes.push(currentNode.value);
       currentNode = currentNode.next;
     }
     return nodes;
