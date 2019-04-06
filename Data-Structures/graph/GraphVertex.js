@@ -18,27 +18,75 @@ class GraphVertex {
     this.edges = new LinkedList(edgeComparator);
   }
 
-  addEdge() {};
+  addEdge(edge) {
+    this.edges.append(edge);
 
-  deleteEdge() {};
+    return this;
+  };
 
-  getNeighbors() {};
+  deleteEdge(edge) {
+    this.edges.delete(edge);
+  };
 
-  getEdges() {};
+  getNeighbors() {
+    const edges = this.edges.toArray();
 
-  getDegree() {};
+    const neighborsConverter = (node) => {
+      return node.value.startVertex === this ? node.value.endVertex : node.value.startVertex;
+    };
 
-  hasEdge() {};
+    return edges.map(neighborsConverter);
 
-  hasNeighbor() {};
+  };
 
-  findEdge() {};
+  getEdges() {
+    return this.edges.toArray().map(LinkedListNode => LinkedListNode.value);
+  };
 
-  getKey() {};
+  getDegree() {
+    return this.edges.toArray().length;
+  };
 
-  deleteAllEdges() {};
+  hasEdge(requiredEdge) {
+    const edgeNode = this.edges.find({
+      callback: edge => edge === requiredEdge
+    });
+    return !!edgeNode;
+  };
 
-  toString() {};
+  hasNeighbor(vertex) {
+    const vertexNode = this.edges.find({
+      callback: edge.startVertex === vertex || edge.endVertex === vertex
+    })
+
+    return !!vertexNode;
+  };
+
+  findEdge(vertex) {
+    const edgeFinder = (edge) => {
+      return edge.startVertex === vertex || edge.endVertex === vertex;
+    }
+
+    const edge = this.edges.find({
+      callback: edgeFinder
+    });
+
+    return edge ? edge.value : null;
+  };
+
+  getKey() {
+    return this.value;
+  };
+
+  deleteAllEdges() {
+    this.getEdges().forEach(edge => this.deleteEdge(edge));
+
+    return this;
+  };
+
+  toString(callback) {
+    return callback ? callback(this.value) : `${this.value}`;
+  };
 
 }
 
