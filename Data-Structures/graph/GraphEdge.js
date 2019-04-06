@@ -5,9 +5,25 @@ class GraphEdges {
     this.weight = weight;
   }
 
-  getKey() {};
-  reverse() {};
-  toString() {};
+  getKey() {
+    const startVertexKey = this.startVertex.getKey();
+    const endVertexKey = this.endVertex.getKey();
+
+    return `${startVertexKey} _ ${endVertexKey}`
+  };
+
+  reverse() {
+    const tmp = this.startVertex;
+    this.startVertex = this.endVertex;
+    this.endVertex = tmp;
+
+    return this;
+  };
+
+  toString() {
+    return this.getKey();
+  };
+
 
 }
 
