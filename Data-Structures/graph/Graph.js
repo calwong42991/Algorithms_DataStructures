@@ -5,28 +5,133 @@ class Graph {
     this.isDirected = isDirected;
   }
 
-  addVertex() {};
+  addVertex(newVertex) {
+    this.vertices[newVertex.getKey()] = newVertex;
 
-  getVertexByKey() {};
+    return this;
+  };
 
-  getNeighbors() {};
+  getVertexByKey(vertexKey) {
+    return this.vertices[vertexKey];
+  };
 
-  getAllEdges() {};
+  getNeighbors(vertex) {
+    return vertex.getNeighbors();
+  };
 
-  addEdge() {};
+  getAllVertices() {
+    return Object.values(this.vertices);
+  }
 
-  deleteEdge() {};
+  getAllEdges() {
+    return Object.values(this.edges);
+  };
 
-  findEdge() {};
+  addEdge(edge) {
+    
+    let startVertex = this.getVertexByKey(edge.startVertex.getKey());
+    let endVertex = this.getVertexByKey(edge.endVertex.getKey());
 
-  reverse() {};
+    if(!startVertex){
+      this.addVertex(edge.startVertex);
+      startVertex = this.getVertexByKey(edge.startVertex.getKey());
+    }
 
-  getVerticesIndices() {};
+    if(!endVertex){
+      this.addVertex(edge.endVertex);
+      endVertex = this.getVertexByKey(edge.endVertex.getKey());
+    }
 
-  getAdjacencyMatrix() {};
+    if(this.edges[edge.getKey()]){
+      throw new Error(`edge has already been added before`);
+    } else {
+      this.edges[edge.getKey()] = edge;
+    }
 
-  toString() {};
+    if(this.isDirected){
+      startVertex.addEdge(edge);
+    } else {
+      startVertex.addEdge(edge);
+      endVertex.addEdge(edge);
+    }
 
+    return this;
+
+  };
+
+  deleteEdge(edge) {
+    if(this.edges[edge.getKey()]) {
+      delete this.edges[edge.getKey()];
+    } else {
+      throw new Error(`Edge not found in graph`);
+    }
+
+    const startVertex = this.getVertexByKey(edge.startVertex.getKey());
+    const endVertex = this.getVertexByKey(edge.endVertex.getKey());
+
+    startVertex.deleteEdge(edge);
+    endVertex.deleteEdge(edge);
+  };
+
+  findEdge(startVertex, endVertex) {
+    const vertex = this.getVertexByKey(startVertex.getKey());
+
+    if(!vertex){
+      return null;
+    }
+
+    return vertex.findEdge(endVertex);
+  };
+
+  getWeight() {
+    return this.getAllEdges().reduce((weight, graphEdge) => {
+      return weight + graphEdge.weight;
+    }, 0);
+  };
+
+  reverse() {
+    this.getAllEdges().forEach((edge) => {
+      this.deleteEdge(edge);
+
+      edge.reverse();
+
+      this.addEdge(edge);
+    })
+
+    return this;
+  };
+
+  getVerticesIndices() {
+    const verticesIndices = {};
+
+    this.getAllVertices().forEach((vertex, index) => {
+      verticesIndices[vertex.getKey()] = index;
+    });
+
+    return verticesIndices;
+  };
+
+  getAdjacencyMatrix() {
+    const vertices = this.getAllVertices();
+    const verticesIndices = this.getVerticesIndices();
+
+    const adjacencyMatrix = Array(vertices.length).fill(null).map(() => {
+      return Array(vertices.length).fill(Infinity);
+    });
+
+    vertices.forEach((vertex, vertexIndex) => {
+      vertex.getNeighbors().forEach((neighbor) => {
+        const neighborIndex = verticesIndices[neighbor.getkey()];
+        adjacencyMatrix[vertexIndex][neighborIndex] = this.findEdge(vertex, neighbor).weight;
+      });
+    });
+
+    return adjacencyMatrix;
+  };
+
+  toString() {
+    return Object.keys(this.vertices).toString();
+  };
 
 }
 
