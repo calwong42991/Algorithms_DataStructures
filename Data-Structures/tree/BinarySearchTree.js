@@ -7,13 +7,21 @@ class BinarySearchTree {
     this.nodeComparator = this.root.nodeComparator;
   }
 
-  insert() {};
+  insert(value) {
+    return this.root.insert(value);
+  };
 
-  contains() {};
+  contains(value) {
+    return this.root.contains(value);
+  };
 
-  remove() {};
+  remove(value) {
+    return this.root.remove(value);
+  };
 
-  toString() {};
+  toString() {
+    return this.root.toString();
+  };
 }
 
 module.exports = BinarySearchTree;
