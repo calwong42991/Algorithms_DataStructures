@@ -15,7 +15,7 @@ class BinaryTreeNode {
   }
 
   get leftHeight() {
-    if(!this.left){
+    if (!this.left) {
       return 0;
     }
 
@@ -23,7 +23,7 @@ class BinaryTreeNode {
   };
 
   get rightHeight() {
-    if(!this.right){
+    if (!this.right) {
       return 0;
     }
 
@@ -39,19 +39,19 @@ class BinaryTreeNode {
   };
 
   get uncle() {
-    if(!this.parent){
+    if (!this.parent) {
       return undefined;
     }
 
-    if(!this.parent.parent){
+    if (!this.parent.parent) {
       return undefined;
     }
 
-    if(!this.parent.parent.left || !this.parent.parent.right){
+    if (!this.parent.parent.left || !this.parent.parent.right) {
       return undefined;
     }
 
-    if(this.nodeComparator.equal(this.parent, this.parent.parent.left)){
+    if (this.nodeComparator.equal(this.parent, this.parent.parent.left)) {
       return this.parent.parent.right;
     }
 
@@ -65,13 +65,13 @@ class BinaryTreeNode {
   };
 
   setLeft(node) {
-    if(this.left){
+    if (this.left) {
       this.left.parent = null;
     }
 
     this.left = node;
 
-    if(this.left) {
+    if (this.left) {
       this.left.parent = this;
     }
 
@@ -79,13 +79,13 @@ class BinaryTreeNode {
   };
 
   setRight(node) {
-    if(this.right){
+    if (this.right) {
       this.right.parent = null;
     }
 
     this.right = node;
 
-    if(node){
+    if (node) {
       this.right.parent = this;
     }
 
@@ -93,12 +93,12 @@ class BinaryTreeNode {
   };
 
   removeChild(nodeToRemove) {
-    if(this.left && this.nodeComparator.equal(this.left, nodeToRemove)){
+    if (this.left && this.nodeComparator.equal(this.left, nodeToRemove)) {
       this.left = null;
       return true;
     }
 
-    if(this.right && this.nodeComparator.equal(this.right, nodeToRemove)){
+    if (this.right && this.nodeComparator.equal(this.right, nodeToRemove)) {
       this.right = null;
       return true;
     }
@@ -107,16 +107,16 @@ class BinaryTreeNode {
   };
 
   replaceChild(nodeToReplace, replacmentNode) {
-    if(!nodeToReplace || !replacmentNode){
+    if (!nodeToReplace || !replacmentNode) {
       return false;
     }
 
-    if(this.left && this.nodeComparator.equal(this.left, nodeToReplace)){
+    if (this.left && this.nodeComparator.equal(this.left, nodeToReplace)) {
       this.left = replacmentNode;
       return true;
     }
 
-    if(this.right && this.nodeComparator.equal(this.left, nodeToReplace)){
+    if (this.right && this.nodeComparator.equal(this.left, nodeToReplace)) {
       this.right = replacmentNode;
       return true;
     }
@@ -133,13 +133,13 @@ class BinaryTreeNode {
   traverseInOrder() {
     let traverse = [];
 
-    if(this.left){
+    if (this.left) {
       traverse = traverse.concat(this.left.traverseInOrder());
     }
 
     traverse.push(this.value);
-    
-    if(this.right){
+
+    if (this.right) {
       traverse = traverse.concat(this.right.traverseInOrder());
     }
 
