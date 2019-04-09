@@ -24,4 +24,4 @@ const fibonacci = (n) => {
 
 module.exports = fibonacci;
 
-console.log(fibonacci(100));
+console.log(fibonacci(150));

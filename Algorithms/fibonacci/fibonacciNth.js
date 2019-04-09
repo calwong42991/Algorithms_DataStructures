@@ -21,5 +21,5 @@ const fibonacciNth = (n) => {
 
 module.exports = fibonacciNth;
 
-console.log(fibonacciNth(5));
-console.log(fibonacciNth(10));
+//console.log(fibonacciNth(5));
+console.log(fibonacciNth(150));

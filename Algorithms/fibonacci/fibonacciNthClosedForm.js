@@ -1,5 +1,5 @@
 const fibonacciNthClosedForm = (position) => {
-  const topMaxValidPosition = 100;
+  const topMaxValidPosition = 1000;
 
   if(position < 1 || position > topMaxValidPosition){
     throw new Error(`Can't handle position smaller than 1 or greater than ${topMaxValidPosition}`);
@@ -15,4 +15,4 @@ const fibonacciNthClosedForm = (position) => {
 
 module.exports = fibonacciNthClosedForm;
 
-console.log(fibonacciNthClosedForm(100));
+console.log(fibonacciNthClosedForm(150));
