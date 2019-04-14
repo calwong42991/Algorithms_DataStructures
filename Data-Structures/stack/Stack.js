@@ -10,7 +10,7 @@ class Stack {
   };
 
   peek() {
-    if(!this.isEmpty()){
+    if (!this.isEmpty()) {
       return null;
     }
 
