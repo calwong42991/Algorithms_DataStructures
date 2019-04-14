@@ -1,9 +1,9 @@
 const fastPowering = (base, power) => {
-  if(power === 0){
+  if (power === 0) {
     return 1;
   }
 
-  if(power % 2 === 0){
+  if (power % 2 === 0) {
     const multiplier = fastPowering(base, power / 2);
     return multiplier * multiplier;
   }
