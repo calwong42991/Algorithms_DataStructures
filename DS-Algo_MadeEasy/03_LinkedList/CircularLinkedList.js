@@ -1,76 +1,78 @@
-const node = (val, nex) => {
-    value = val;
-    next = nex;
+const LinkedList = function() {
+    this.length = 0;
+    this.first = null;
+    this.last = null;
+}
 
-    const setValue = (v) => {
-        value = v;
-    };
+LinkedList.Node = function(data){
+    this.prev = null;
+    this.next = null;
+    this.data = data;
+}
 
-    const getValue = () => {
-        return value;
-    };
+LinkedList.prototype.append = function(node) {
+    if (this.first === null) {
+        node.prev = node;
+        node.next = node;
+        this.first = node;
+        this.last = node;
+    } else {
+        node.prev = this.last;
+        node.next = this.first;
+        this.first.prev = node;
+        this.last.next = node;
+        this.last = node;
+    }
+    this.length++;
+}
 
-    const setNext = (n) => {
-        next = n;
-    };
+LinkedList.prototype.insertAfter = function (node, newNode) {
+    newNode.prev = node;
+    newNode.next = node.next;
+    node.next.prev = newNode;
+    node.next = newNode;
 
-    const getNext = () => {
-        return next || null;
-    };
+    if (newNode.prev == this.last) {
+        this.last = newNode;
+    }
 
+    this.length++;
+}
 
-    return {
-        setValue,
-        getValue,
-        setNext,
-        getNext
+LinkedList.prototype.remove = function (node) {
+    if (this.length > 1) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        if (node == this.first) {
+            this.first = node.next;
+        }
+        if (node == this.last) {
+            this.last = node.prev;
+        }
+    } else {
+        this.first = null;
+        this.last = null;
+    }
+    node.prev = null;
+    node.next = null;
+    this.length--;
+}
+
+LinkedList.prototype.each = function (cb) {
+    var p = this.first
+    var n = this.length
+
+    while (n--) {
+        cb(p.data)
+        p = p.next
     }
 }
 
-const circularLinkedList = () => {
-    let headNode = null;
-    let nodeCount = 0;
-
-    const getHead = () => {
-        return headNode;
-    }
-
-    const getCount = () => {
-        return nodeCount;
-    }
-
-    const print = () => {
-        if (headNode === null) {
-            return null;
-        } else {
-            let current = headNode;
-
-            while (current !== null) {
-                console.log(current.getValue());
-                current = current.getNext();
-            }
-        }
-    }
-
-    const insertLast = (value) => {
-        let newValue = node(value, headNode);
-
-        if (headNode === null) {
-            headNode = newValue;
-        } else {
-            let current = headNode;
-            while (current.getNext() !== null) {
-                current = current.getNext();
-            }
-
-            current.setNext(newValue);
-        }
-    }
-
-    return {
-        getHead,
-        getCount,
-        print,
-        insertLast
-    }
-}
+let myList = new LinkedList();
+myList.append(new LinkedList.Node(1));
+myList.append(new LinkedList.Node(2));
+myList.append(new LinkedList.Node(3));
+myList.append(new LinkedList.Node(4));
+myList.append(new LinkedList.Node(5));
+myList.append(new LinkedList.Node(6));
+console.log(myList);
