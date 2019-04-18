@@ -4,20 +4,15 @@ const node = (val, nex) => {
 
     const setValue = (v) => {
         value = v;
-    };
+    }
 
-    const getValue = () => {
-        return value;
-    };
+    const getValue = () => value;
 
     const setNext = (n) => {
         next = n;
     };
 
-    const getNext = () => {
-        return next || null;
-    };
-
+    const getNext = () => next || null;
 
     return {
         setValue,
@@ -28,28 +23,21 @@ const node = (val, nex) => {
 }
 
 const linkedList = () => {
-
     let headNode = null;
     let nodesCount = 0;
 
-    const getHead = () => {
-        return headNode
-    };
+    const head = () => headNode;
 
-    const getCount = () => {
-        return nodesCount;
-    };
+    const count = () => nodesCount;
 
     const find = (val) => {
         let current = headNode;
-
-        while (current) {
+        while (current !== null) {
             if (current.getValue() === val) {
-                return `${val} is in the linked list with these functions ${current}`;
+                return `${val} is in Linked List with these functions ${current}`;
             }
             current = current.getNext();
         }
-
         return current;
     };
 
@@ -70,7 +58,7 @@ const linkedList = () => {
             while (current.getNext() !== null) {
                 current = current.getNext();
             }
-            current.setValue(node(value));
+            current.setNext(node(value));
         }
         nodesCount += 1;
     };
@@ -78,39 +66,37 @@ const linkedList = () => {
     const addBefore = (value, newValue) => {
         let prev = null;
         let current = headNode;
-
         while (current !== null) {
-            if (current.getValue === value) {
+            if (current.getValue() === value) {
                 if (prev === null) {
                     addFirst(newValue);
                 } else {
-                    prev.setNext(node(newValue, current));
+                    prev.setNext(node(newValue, current))
                     nodesCount += 1;
                 }
+                break;
             } else {
                 prev = current;
                 current = current.getNext();
             }
         }
-
         if (current === null) {
             throw new Error(`node ${value} not found`);
         }
-
     };
 
     const addAfter = (value, newValue) => {
         let current = headNode;
         while (current !== null) {
             if (current.getValue() === value) {
-                current.setNext(node(newValue, current.getNext()));
+                const n = node(newValue, current.getNext())
+                current.setNext(n);
                 nodesCount += 1;
                 break;
             } else {
                 current = current.getNext();
             }
         }
-
         if (current === null) {
             throw new Error(`node ${value} not found`);
         }
@@ -160,7 +146,7 @@ const linkedList = () => {
         }
     };
 
-    const traverse = (callback) => {
+    const traverse = ({ callback }) => {
         let current = headNode;
         while (current !== null) {
             callback(current);
@@ -179,10 +165,10 @@ const linkedList = () => {
         count = 0;
     };
 
-
     return {
-        getHead,
-        getCount,
+        node,
+        head,
+        count,
         find,
         addFirst,
         addLast,
@@ -195,6 +181,6 @@ const linkedList = () => {
         toArray,
         clear
     }
-};
+}
 
 module.exports = linkedList;
