@@ -198,3 +198,5 @@ const linkedList = () => {
         clear
     }
 };
+
+module.exports = linkedList;
