@@ -1,4 +1,4 @@
-const LinkedList = require('./LinkedList');
+const LinkedList = require('../LinkedList');
 
 let stack = () => {
     let linkedList = LinkedList();
