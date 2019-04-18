@@ -70,7 +70,7 @@ const linkedList = () => {
             while (current.getNext() !== null) {
                 current = current.getNext();
             }
-            current.setValue(value);
+            current.setValue(node(value));
         }
         nodesCount += 1;
     };
@@ -160,9 +160,7 @@ const linkedList = () => {
         }
     };
 
-    const traverse = ({
-        callback
-    }) => {
+    const traverse = (callback) => {
         let current = headNode;
         while (current !== null) {
             callback(current);
@@ -170,7 +168,7 @@ const linkedList = () => {
         }
     };
 
-    const toArray = (arr) => {
+    const toArray = () => {
         const arr = [];
         traverse(n => arr.push(n.getValue()));
         return arr;
