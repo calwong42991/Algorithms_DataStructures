@@ -14,3 +14,5 @@ const binary = (n) => {
     }
     recursion(n);
   }
+
+  console.log(binary(3))
