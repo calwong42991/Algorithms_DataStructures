@@ -23,7 +23,7 @@ const isCircularFloyd = (linkedList) => {
         slow = slow.next;
         fast = fast.next.next;
 
-        if(slow.value === fast.value){
+        if(slow === fast){
             return true;
         }
     }
