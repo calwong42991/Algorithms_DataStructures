@@ -3,7 +3,7 @@ const reverseLL = (linkedList) => {
     let temp = null;
     let nextNode = null;
 
-    while(head){
+    while (head) {
         nextNode = head.next;
         head.next = temp;
         temp = head;
