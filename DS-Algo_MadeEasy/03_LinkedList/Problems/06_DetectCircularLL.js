@@ -14,3 +14,19 @@ const isCircular = (linkedList) => {
     return false;
 }
 
+const isCircularFloyd = (linkedList) => {
+    let slow = linkedList.head;
+    let fast = linkedList.head;
+
+    while(fast.next.next){
+        
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if(slow.value === fast.value){
+            return true;
+        }
+    }
+
+    return false;
+}
