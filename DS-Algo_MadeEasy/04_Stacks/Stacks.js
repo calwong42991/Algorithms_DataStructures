@@ -6,15 +6,15 @@ class Stack {
     }
 
     isStackEmpty() {
-        return this.top ? 1 : -1;
+        return this.top < 0? 1 : 0;
     }
 
     isStackFull() {
-        return this.top === this.capacity ? -1 : 1;
+        return this.top === this.capacity ? 1 : 0;
     }
 
     push(value) {
-        if (this.isStackFull() < 0) {
+        if (this.isStackFull() > 0) {
             return 'Stack OverFlow';
         }
 
@@ -25,7 +25,7 @@ class Stack {
     }
 
     pop() {
-        if (!this.isStackEmpty()) {
+        if (this.isStackEmpty() === 0) {
             return 'Stack is Empty';
         } else {
             const deleted = this.data[this.top];
