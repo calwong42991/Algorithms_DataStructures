@@ -58,6 +58,7 @@ stack.push(10);
 console.log(stack.push(11));
 console.log(stack.push(12));
 stack.push(13);
+stack.push(14);
 console.log('stacked pop: ', stack.pop());
 console.log('stacked pop: ', stack.pop());
 
