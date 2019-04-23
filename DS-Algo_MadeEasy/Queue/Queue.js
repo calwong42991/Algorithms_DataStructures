@@ -46,7 +46,7 @@ class Queue {
                 this.front++;
             }
         }
-        return deletedl
+        return deleted;
     }
 
     deleteQueue() {
@@ -55,5 +55,5 @@ class Queue {
         this.capacity = capacity;
         this.data = [];
     }
-    
+
 }
