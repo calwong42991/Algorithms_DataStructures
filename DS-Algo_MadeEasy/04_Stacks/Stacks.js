@@ -6,7 +6,7 @@ class Stack {
     }
 
     isStackEmpty() {
-        return this.top < 0? 1 : 0;
+        return this.top < 0 ? 1 : 0;
     }
 
     isStackFull() {
@@ -20,8 +20,6 @@ class Stack {
 
         this.top++;
         this.data.push(value);
-    
-
     }
 
     pop() {
@@ -41,25 +39,27 @@ class Stack {
     }
 }
 
-let stack = new Stack(10);
-console.log(stack.isStackEmpty());
-console.log(stack.isStackFull());
+// let stack = new Stack(10);
+// console.log(stack.isStackEmpty());
+// console.log(stack.isStackFull());
 
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(4);
-stack.push(5);
-stack.push(6);
-stack.push(7);
-stack.push(8);
-stack.push(9);
-stack.push(10);
-console.log(stack.push(11));
-console.log(stack.push(12));
-stack.push(13);
-stack.push(14);
-console.log('stacked pop: ', stack.pop());
-console.log('stacked pop: ', stack.pop());
+// stack.push(1);
+// stack.push(2);
+// stack.push(3);
+// stack.push(4);
+// stack.push(5);
+// stack.push(6);
+// stack.push(7);
+// stack.push(8);
+// stack.push(9);
+// stack.push(10);
+// console.log(stack.push(11));
+// console.log(stack.push(12));
+// stack.push(13);
+// stack.push(14);
+// console.log('stacked pop: ', stack.pop());
+// console.log('stacked pop: ', stack.pop());
 
-console.log(stack);
+// console.log(stack);
+
+module.exports = Stack;
