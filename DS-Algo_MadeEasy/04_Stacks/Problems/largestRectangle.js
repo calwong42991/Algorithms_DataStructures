@@ -1,3 +1,21 @@
+const largestRectangleAreaBruteForce = (histogram) => {
+    let maxArea = 0;
+
+    for(let left = 0; left < histogram.length; left++){
+        for(let right = left; right < histogram.length; right++){
+            let min = Number.POSITIVE_INFINITY;
+
+            for(let i = left; i <= right; i++){
+                min = Math.min(min, histogram[i]);
+            }
+
+            let area = min * (right - left + 1);
+            maxArea = Math.max(area, maxArea);
+        }
+    }
+    return maxArea;
+}
+
 const largestRectangleArea = (histogram) => {
     if (histogram.length === 0) {
         return 0;
@@ -20,4 +38,5 @@ const largestRectangleArea = (histogram) => {
     return max;
 }
 
-console.log(largestRectangleArea([2, 1, 5, 6, 2, 3]));
+
+console.log(largestRectangleAreaBruteForce([2, 1, 5, 6, 2, 3]));
