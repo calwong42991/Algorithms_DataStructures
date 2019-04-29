@@ -29,8 +29,9 @@ const isPalindrome1 = (str) => {
     }
 
     i++;
+
     while (str[i]) {
-        if (stack.isStackEmpty() || str[i] != stack.pop()) {
+        if (stack.isStackEmpty() || str[i] !== stack.pop()) {
             console.log('Not a Palindrome');
             return 0;
         }
@@ -39,3 +40,5 @@ const isPalindrome1 = (str) => {
 
     return stack.isStackEmpty();
 }
+
+console.log(isPalindrome1('abba'));
