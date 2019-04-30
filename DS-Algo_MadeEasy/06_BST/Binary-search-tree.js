@@ -134,18 +134,18 @@ class BinarySearchTree {
     }
 
     remove(val, node = this.root) {
-        if(!node){
+        if (!node) {
             return null;
         }
 
-        if(val < node.value){
+        if (val < node.value) {
             node.left = this.remove(val, node.left)
-        } else if(val > node.value){
+        } else if (val > node.value) {
             node.right = this.remove(val, node.right);
         } else {
-            if(!node.left){
+            if (!node.left) {
                 return node.right;
-            } else if (!node.right){
+            } else if (!node.right) {
                 return node.left;
             } else {
                 node.value = this.getMin(node.right);
@@ -157,26 +157,45 @@ class BinarySearchTree {
 
     leastCommonAncestor(n1, n2) {
         if (this.root == null) {
-          return this.root;
+            return this.root;
         }
-        
+
         let queue = [this.root];
         while (queue.length) {
-          let root = queue.shift();
-          if (root.value === n1.value ||
-              root.value === n2.value ||
-              (root.value >= n1.value && root.value <= n2.value) ||
-              (root.value <= n1.value && root.value >= n2.value)
-             ){
-             return root;
-          } else {
-            if(root.value > n1.value && root.value > n2.value) {
-              root.left && queue.push(root.left);
+            let root = queue.shift();
+            if (root.value === n1.value ||
+                root.value === n2.value ||
+                (root.value >= n1.value && root.value <= n2.value) ||
+                (root.value <= n1.value && root.value >= n2.value)
+            ) {
+                return root;
             } else {
-              root.right && queue.push(root.right);
+                if (root.value > n1.value && root.value > n2.value) {
+                    root.left && queue.push(root.left);
+                } else {
+                    root.right && queue.push(root.right);
+                }
             }
-          }
         }
         return null;
-      }
+    }
+
+    lowestCommonAncestor(root, p, q) {
+        if (!root)
+            return null;
+
+        if (root === p || root === q)
+            return root;
+
+        var left = lowestCommonAncestor(root.left, p, q);
+        var right = lowestCommonAncestor(root.right, p, q);
+
+        if (left && right)
+            return root;
+        else if (left)
+            return left;
+        else
+            return right;
+    }
+
 }
