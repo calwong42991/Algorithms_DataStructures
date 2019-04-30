@@ -93,4 +93,36 @@ class BinarySearchTree {
         };
         return traverse(this.root);
     }
+
+    insert(value) {
+        if (this.root === null) {
+            this.root = new Node(value);
+        } else {
+            let current = this.root;
+            while (true) {
+                if (value > current.value) {
+                    if (current.right === null) {
+                        current.right = new Node(value);
+                        break;
+                    } else {
+                        current = current.right;
+                    }
+                } else if (value < current.value) {
+                    if (current.left === null) {
+                        current.left = new Node(value);
+                        break;
+                    } else {
+                        current = current.left;
+                    }
+                }
+            }
+        }
+    }
+
+    getMin(node = this.root) {
+        while (node.left) {
+            node = node.left;
+        }
+        return node.value;
+    }
 }
