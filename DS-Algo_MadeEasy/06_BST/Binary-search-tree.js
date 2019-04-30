@@ -154,4 +154,29 @@ class BinarySearchTree {
         }
         return node;
     }
+
+    leastCommonAncestor(n1, n2) {
+        if (this.root == null) {
+          return this.root;
+        }
+        
+        let queue = [this.root];
+        while (queue.length) {
+          let root = queue.shift();
+          if (root.value === n1.value ||
+              root.value === n2.value ||
+              (root.value >= n1.value && root.value <= n2.value) ||
+              (root.value <= n1.value && root.value >= n2.value)
+             ){
+             return root;
+          } else {
+            if(root.value > n1.value && root.value > n2.value) {
+              root.left && queue.push(root.left);
+            } else {
+              root.right && queue.push(root.right);
+            }
+          }
+        }
+        return null;
+      }
 }
