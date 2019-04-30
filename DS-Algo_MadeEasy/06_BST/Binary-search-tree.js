@@ -127,9 +127,31 @@ class BinarySearchTree {
     }
 
     getMax(node = this.root) {
-        while(node.right) {
-          node = node.right;
+        while (node.right) {
+            node = node.right;
         }
         return node.value;
-      }
+    }
+
+    remove(val, node = this.root) {
+        if(!node){
+            return null;
+        }
+
+        if(val < node.value){
+            node.left = this.remove(val, node.left)
+        } else if(val > node.value){
+            node.right = this.remove(val, node.right);
+        } else {
+            if(!node.left){
+                return node.right;
+            } else if (!node.right){
+                return node.left;
+            } else {
+                node.value = this.getMin(node.right);
+                node.right = this.remove(node.value, node.right);
+            }
+        }
+        return node;
+    }
 }
