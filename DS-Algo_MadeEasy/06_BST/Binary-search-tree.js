@@ -125,4 +125,11 @@ class BinarySearchTree {
         }
         return node.value;
     }
+
+    getMax(node = this.root) {
+        while(node.right) {
+          node = node.right;
+        }
+        return node.value;
+      }
 }
