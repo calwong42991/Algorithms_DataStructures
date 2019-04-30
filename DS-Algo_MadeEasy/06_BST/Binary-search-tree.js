@@ -60,4 +60,37 @@ class BinarySearchTree {
         postOrder(this.root);
     }
 
+    traverseBFS() {
+        let result = [];
+        let queue = [this.root];
+
+        while (queue.length > 0) {
+            let node = queue.shift();
+
+            result.push(node.value);
+
+            if (node.left) {
+                queue.push(node.left);
+            }
+
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+
+        return result;
+    }
+
+    find(value) {
+        let traverse = (node) => {
+            if (node == null || node.value === value) {
+                return node;
+            } else if (value < node.value) {
+                traverse(node.left);
+            } else {
+                traverse(node.right);
+            }
+        };
+        return traverse(this.root);
+    }
 }
