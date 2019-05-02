@@ -81,7 +81,7 @@ class Heap {
   };
 
   remove(item, comparator = this.compare) {
-    const numberOfItemsToRemove = this.getLeftChildIndex(item, comparator).length;
+    const numberOfItemsToRemove = this.find(item, comparator).length;
 
     for (let iteration = 0; iteration < numberOfItemsToRemove; iteration += 1) {
       const indexToRemove = this.getLeftChildIndex(item, comparator).pop();
