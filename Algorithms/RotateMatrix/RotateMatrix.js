@@ -12,11 +12,11 @@ const swap = (matrix, x1, y1, x2, y2) => {
 }
 
 const rotateColumns = (matrix) => {
-    for(let i = 0; i < matrix.length; i++){
+    for (let i = 0; i < matrix.length; i++) {
         let low = 0;
         let ceil = matrix.length - 1;
 
-        while(low < ceil){
+        while (low < ceil) {
             swap(matrix, low, i, ceil, i);
             low++;
             ceil--;
@@ -25,8 +25,8 @@ const rotateColumns = (matrix) => {
 }
 
 const rotateEachDiagonal = (matrix) => {
-    for(let i = 0; i < matrix.length; i++){
-        for(let j = i; j < matrix.length; j++){
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = i; j < matrix.length; j++) {
             swap(matrix, i, j, j, i);
         }
     }
@@ -42,7 +42,8 @@ const matrix2 = [
     [1, 2, 3, 4, 5],
     [6, 7, 8, 9, 10],
     [11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20]
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25]
 ]
 
-console.log(rotateImage(matrix1));
+console.log(rotateImage(matrix2));
