@@ -75,7 +75,6 @@ const rowChecker = (grid, y, x) => {
         x++;
     }
     return true;
-
 };
 
 const grid1 = [
