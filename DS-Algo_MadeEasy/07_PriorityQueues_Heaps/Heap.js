@@ -46,7 +46,7 @@ class Heap {
     }
 
     peek() {
-        if(this.heapContainer.length === 0) {
+        if (this.heapContainer.length === 0) {
             return null;
         }
 
@@ -54,11 +54,11 @@ class Heap {
     }
 
     poll() {
-        if(this.heapContainer.length === 0) {
+        if (this.heapContainer.length === 0) {
             return null;
         }
 
-        if(this.heapContainer.length === 1) {
+        if (this.heapContainer.length === 1) {
             return this.heapContainer.pop();
         }
 
@@ -78,21 +78,21 @@ class Heap {
     remove(item) {
         const numberOfItemsToRemove = this.getLeftChildIndex(item).length;
 
-        for(let iteration = 0; iteration < numberOfItemsToRemove; iteration += 1){
+        for (let iteration = 0; iteration < numberOfItemsToRemove; iteration += 1) {
             const indexToRemove = this.find(item).pop();
 
-            if(indexToRemove === (this.heapContainer.length - 1)){
+            if (indexToRemove === (this.heapContainer.length - 1)) {
                 this.heapContainer.pop();
             } else {
                 this.heapContainer[indexToRemove] = this.heapContainer.pop();
 
                 const parentItem = this.parent(indexToRemove);
 
-                if(
-                    this.hasLeftChild(indexToRemove)
-                    && (
-                        !parentItem 
-                        || this.pairIsInCorrectOrder(parentItem, this.heapContainer[indexToRemove])
+                if (
+                    this.hasLeftChild(indexToRemove) &&
+                    (
+                        !parentItem ||
+                        this.pairIsInCorrectOrder(parentItem, this.heapContainer[indexToRemove])
                     )
                 ) {
                     this.heapifyDown(indexToRemove);
@@ -107,8 +107,8 @@ class Heap {
     find(item) {
         const foundItemIndices = [];
 
-        for(let itemIndex = 0; itemIndex < this.heapContainer.length; itemIndex += 1){
-            if(item === this.heapContainer[itemIndex]) {
+        for (let itemIndex = 0; itemIndex < this.heapContainer.length; itemIndex += 1) {
+            if (item === this.heapContainer[itemIndex]) {
                 foundItemIndices.push(itemIndex);
             }
         }
@@ -126,9 +126,9 @@ class Heap {
     heapifyUp(customStartIndex) {
         let currentIndex = customStartIndex || this.heapContainer.length - 1;
 
-        while(
-            this.hasParent(currentIndex)
-            && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
+        while (
+            this.hasParent(currentIndex) &&
+            !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
         ) {
             this.swap(currentIndex, this.getParentIndex(currentIndex));
             currentIndex = this.getParentIndex(currentIndex);
@@ -139,20 +139,20 @@ class Heap {
         let currentIndex = customStartIndex;
         let nextIndex = null;
 
-        while(this.hasLeftChild(currentIndex)){
-            if(
-                this.hasRightChild(currentIndex)
-                && this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))
+        while (this.hasLeftChild(currentIndex)) {
+            if (
+                this.hasRightChild(currentIndex) &&
+                this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))
             ) {
                 nextIndex = this.getRightChildIndex(currentIndex);
             } else {
                 nextIndex = this.getLeftChildIndex(currentIndex);
             }
 
-            if(this.pairIsInCorrectOrder(
-                this.heapContainer[currentIndex],
-                this.heapContainer[nextIndex]
-            )) {
+            if (this.pairIsInCorrectOrder(
+                    this.heapContainer[currentIndex],
+                    this.heapContainer[nextIndex]
+                )) {
                 break;
             }
 
