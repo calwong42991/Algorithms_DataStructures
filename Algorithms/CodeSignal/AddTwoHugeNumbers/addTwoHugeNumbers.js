@@ -1,46 +1,45 @@
 function addTwoHugeNumbers(a, b) {
-    let max = 10000;
+    a = reverseListNode(a);
+    b = reverseListNode(b);
+
+    let result = [];
     let carry = 0;
-    let sum = 0;
-    let arr1 = [];
-    let a1 = reverseListNode(a);
-    let b1 = reverseListNode(b);
-    while (a1 || b1) {
-        if (!a1) {
-            a1 = new ListNode(0);
-        } else if (!b1) {
-            b1 = new ListNode(0);
+
+    while (a || b || carry) {
+        if (!a) {
+            a = new ListNode(0)
+        };
+
+        if (!b) {
+            b = new ListNode(0)
+        };
+
+        if(a.value + b.value + carry > 9999 ){
+            result.push(a.value + b.value + carry - 10000);
+            carry = 1;
+        } else {
+            result.push(a.value + b.value + carry );
+            carry = 0;
         }
 
-        let sum = parseInt(a1.value) + parseInt(b1.value);
-        if (carry > 0) {
-            sum += carry;
-        }
-        carry = parseInt(sum / max);
-        arr1.push(sum % max);
-        if (a1.next && !b1.next) {
-            b1.next = new ListNode(0);
-        } else if (a1.next && !b1.next) {
-            a1.next = new ListNode(0);
-        }
-        a1 = a1.next;
-        b1 = b1.next;
+        a = a.next;
+        b = b.next;
     }
-    if (carry > 0) {
-        arr1.push(carry);
-    }
-    return [...arr1].reverse();
+    return result.reverse();
 
 }
 
 function reverseListNode(a) {
-    let a1 = null;
     let prev = null;
-    while (a) {
-        prev = a1;
-        a1 = new ListNode(a.value);
-        a1.next = prev;
-        a = a.next;
-    }
-    return a1;
+    let current = a;
+    let tmp = null;
+
+    while (current) {
+        tmp = current.next;
+        current.next = prev;
+        prev = current;
+        current = tmp;
+    };
+    return prev;
+
 }
