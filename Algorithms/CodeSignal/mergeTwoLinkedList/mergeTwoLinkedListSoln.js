@@ -6,11 +6,6 @@
 //
 
 function mergeTwoLinkedLists(l1, l2) {
-
-    if (!l1 || !l2) {
-        return null;
-    }
-
     let ret = null;
     let prev = null;
 

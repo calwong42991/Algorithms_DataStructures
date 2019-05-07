@@ -6,43 +6,49 @@
 //
 
 function mergeTwoLinkedLists(l1, l2) {
+    let rootNode,
+        currentNode,
+        currentL1 = l1,
+        currentL2 = l2;
 
-    if (!l1 || !l2) {
-        return null;
+
+    if(!l1){
+        return l2;
+    } 
+
+    if(!l2){
+        return l1;
     }
 
-    let ret = null;
-    let prev = null;
+    if(currentL1.value < currentL2.value){
+        rootNode = currentL1;
+        currentNode = currentL1;
+        currentL1 = currentL1.next;
+    } else {
+        rootNode = currentL2;
+        currentNode = currentL2;
+        currentL2 = currentL2.next;
+    }
 
-    while (l1 && l2) {
-        if (l1.value < l2.value) {
-            if (prev) {
-                prev.next = li;
-                prev = li;
-            } else {
-                ret = li;
-                prev = li;
-            }
-            l1 = l1.next;
+    while(currentL1 || currentL2){
+        if(currentL1 === null){
+            currentNode.next = currentL2;
+            currentNode = currentL2;
+            currentL2 = currentL2.next;
+        } else if(currentL2 === null){
+            currentNode.next = currentL1;
+            currentNode = currentL1;
+            currentL1 = currentL1.next;
+        } else if(currentL1.value < currentL2.value){
+            currentNode.next = currentL1;
+            currentNode = currentL1;
+            currentL1 = currentL1.next;
         } else {
-            if (prev) {
-                prev.next = l2;
-                prev = l2;
-            } else {
-                ret = l2;
-                prev = l2;
-            }
-            l2 = l2.next;
+            currentNode.next = currentL2;
+            currentNode = currentL2;
+            currentL2 = currentL2.next;
         }
     }
 
-    if (!l1) {
-        prev ? prev.next = l2 :
-            ret = l2;
-    } else {
-        prev ? prev.next = l1 :
-            ret = l1;
-    }
-
-    return ret;
+    return rootNode;
 }
