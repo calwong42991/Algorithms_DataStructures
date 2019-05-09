@@ -35,8 +35,8 @@ const searchRange = (nums, target) => {
     };
 
     
-    const first = Math.max(-1, firstOccurence(0, high));
-    const last = Math.max(-1, lastOccurence(0, high));
+    const first = Math.max(-1, firstOccurence(low, high));
+    const last = Math.max(-1, lastOccurence(low, high));
 
     return [first, last];
 };
