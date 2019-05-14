@@ -28,27 +28,27 @@ class Graph {
   };
 
   addEdge(edge) {
-    
+
     let startVertex = this.getVertexByKey(edge.startVertex.getKey());
     let endVertex = this.getVertexByKey(edge.endVertex.getKey());
 
-    if(!startVertex){
+    if (!startVertex) {
       this.addVertex(edge.startVertex);
       startVertex = this.getVertexByKey(edge.startVertex.getKey());
     }
 
-    if(!endVertex){
+    if (!endVertex) {
       this.addVertex(edge.endVertex);
       endVertex = this.getVertexByKey(edge.endVertex.getKey());
     }
 
-    if(this.edges[edge.getKey()]){
+    if (this.edges[edge.getKey()]) {
       throw new Error(`edge has already been added before`);
     } else {
       this.edges[edge.getKey()] = edge;
     }
 
-    if(this.isDirected){
+    if (this.isDirected) {
       startVertex.addEdge(edge);
     } else {
       startVertex.addEdge(edge);
@@ -60,7 +60,7 @@ class Graph {
   };
 
   deleteEdge(edge) {
-    if(this.edges[edge.getKey()]) {
+    if (this.edges[edge.getKey()]) {
       delete this.edges[edge.getKey()];
     } else {
       throw new Error(`Edge not found in graph`);
@@ -76,7 +76,7 @@ class Graph {
   findEdge(startVertex, endVertex) {
     const vertex = this.getVertexByKey(startVertex.getKey());
 
-    if(!vertex){
+    if (!vertex) {
       return null;
     }
 
