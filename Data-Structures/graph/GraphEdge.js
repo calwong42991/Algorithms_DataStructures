@@ -24,7 +24,6 @@ class GraphEdges {
     return this.getKey();
   };
 
-
 }
 
 module.exports = GraphEdges;
