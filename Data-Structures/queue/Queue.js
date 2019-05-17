@@ -10,7 +10,7 @@ class Queue {
   };
 
   peek() {
-    if(!this.linkedList.head){
+    if (!this.linkedList.head) {
       return null;
     }
     return this.linkedList.head.value;
