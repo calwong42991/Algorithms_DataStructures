@@ -112,7 +112,7 @@ class Heap {
   heapifyUp(customStartIndex) {
     let currentIndex = customStartIndex || this.heapContainer.length - 1;
 
-    while( this.hasParent(currentIndex) && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])){
+    while (this.hasParent(currentIndex) && !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])) {
       this.swap(currentIndex, this.getParentIndex(currentIndex));
       currentIndex = this.getParentIndex(currentIndex);
     }
@@ -121,14 +121,14 @@ class Heap {
   heapifyDown(customStartIndex = 0) {
     let currentIndex = customStartIndex;
     let nextIndex = null;
-    while(this.hasLeftChild(currentIndex)){
-      if(this.hasRightChild(currentIndex) && this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))){
+    while (this.hasLeftChild(currentIndex)) {
+      if (this.hasRightChild(currentIndex) && this.pairIsInCorrectOrder(this.rightChild(currentIndex), this.leftChild(currentIndex))) {
         nextIndex = this.getRightChildIndex(currentIndex);
       } else {
         nextIndex = this.getLeftChildIndex(currentIndex);
       }
 
-      if(this.pairIsInCorrectOrder(this.heapContainer[currentIndex], this.heapContainer[nextIndex])){
+      if (this.pairIsInCorrectOrder(this.heapContainer[currentIndex], this.heapContainer[nextIndex])) {
         break;
       }
 
